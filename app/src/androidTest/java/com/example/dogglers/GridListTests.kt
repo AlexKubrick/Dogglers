@@ -25,6 +25,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.example.dogglers.BaseTest.DrawableMatcher.hasItemCount
+import org.hamcrest.Matchers.endsWith
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -58,7 +59,7 @@ class GridListTests : BaseTest() {
     fun `vertical_scrolling`() {
         onView(withId(R.id.grid_recycler_view))
             .perform(swipeUp())
-        onView(withText("Bella")).check(matches(isDisplayed()))
+        onView(withText(endsWith("Bella"))).check(matches(isDisplayed()))
     }
 
     @Test
