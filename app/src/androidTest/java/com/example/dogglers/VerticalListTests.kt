@@ -51,7 +51,7 @@ class VerticalListTests : BaseTest() {
 
     @Test
     fun `vertical_scrolling`() {
-        onView(withId(R.id.vertical_recycler_view))
+        onView(withId(R.id.vertical_recycle r_view))
                 .perform(swipeUp())
         onView(withText("Faye")).check(matches(isDisplayed()))
     }
