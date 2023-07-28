@@ -31,7 +31,7 @@ import com.example.dogglers.model.Dog
  * from the appropriate data source
  */
 class DogCardAdapter(
-    private val context: Context?,
+    private val context: Context,
     private val layout: Int
 ): RecyclerView.Adapter<DogCardAdapter.DogCardViewHolder>() {
 
@@ -40,11 +40,11 @@ class DogCardAdapter(
     /**
      * Initialize view elements
      */
-    class DogCardViewHolder(view: View?): RecyclerView.ViewHolder(view!!) {
-        val imageView: ImageView = view!!.findViewById(R.id.item_image)
-        val textViewName: TextView = view!!.findViewById(R.id.dog_name)
-        val textViewAge: TextView = view!!.findViewById(R.id.dog_age)
-        val textViewHobby: TextView = view!!.findViewById(R.id.dog_hobby)
+    class DogCardViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        val imageView: ImageView = view.findViewById(R.id.item_image)
+        val textViewName: TextView = view.findViewById(R.id.dog_name)
+        val textViewAge: TextView = view.findViewById(R.id.dog_age)
+        val textViewHobby: TextView = view.findViewById(R.id.dog_hobby)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogCardViewHolder {
@@ -71,13 +71,12 @@ class DogCardAdapter(
     override fun getItemCount(): Int = dogList.size // return the size of the data set instead of 0
 
     override fun onBindViewHolder(holder: DogCardViewHolder, position: Int) {
-        val resources = context?.resources
         val item = dogList[position]
 
         holder.imageView.setImageResource(item.imageResourceId)
         holder.textViewName.text = item.name // setText
-        holder.textViewAge.text = item.age
-        holder.textViewHobby.text = resources?.getString(R.string.dog_hobbies, item.hobbies)
+        holder.textViewAge.text = context.getString(R.string.dog_age, item.age)
+        holder.textViewHobby.text = context.getString(R.string.dog_hobbies, item.hobbies)
 
         // Get the data at the current position
         // Set the image resource for the current dog
